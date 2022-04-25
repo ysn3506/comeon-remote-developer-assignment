@@ -1,0 +1,5 @@
+export default{
+    SET_CURRENT_USER: "SET_CURRENT_USER",
+    USER_LOGIN_ERROR:"USER_LOGIN_ERROR"
+    
+}
