@@ -2,7 +2,7 @@ import constants from './constants';
 
 const INITIAL_STATE = {
   currentUser: {},
-  invalidUserEntry: '',
+  invalidUserEntry: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action = {}) => {

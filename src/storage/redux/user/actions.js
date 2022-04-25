@@ -10,14 +10,18 @@ const setCurrenUser = (user) => (dispatch) => {
       });
       dispatch({
         type: constants.USER_LOGIN_ERROR,
-        payload: "",
+        payload: false,
       });
     })
     .catch(() => {
       dispatch({
         type: constants.USER_LOGIN_ERROR,
-        payload: "Incorrect User Name or Password",
+        payload: "true",
       });
+       dispatch({
+         type: constants.SET_CURRENT_USER,
+         payload:{},
+       });
     });
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import setCurrentUser from "../../storage/redux/user/actions";
 import "./style.scss";
 
@@ -16,6 +16,9 @@ function LoginForm() {
 
   const dispatch = useDispatch();
 
+  const currentUser = useSelector((state) => state.currentUser);
+  const navigate = useNavigate();
+
   const submitUser = (e) => {
     e.preventDefault();
     if (user && password) {
@@ -23,7 +26,8 @@ function LoginForm() {
       dispatch(setCurrentUser(player));
       userRef.current.value = "";
       passwordRef.current.value = "";
-      // if (currentUser.name) navigate("/home");
+      console.log(currentUser)
+      if (currentUser.name) navigate("/home");
     } else {
       setUserNameNull(true);
       setPasswordNull(true);
@@ -31,6 +35,7 @@ function LoginForm() {
   };
 
   const wrongUser = useSelector((state) => state.invalidUserEntry);
+
   return (
     <div className="form-wrapper">
       <div className="login-form">
@@ -79,7 +84,7 @@ function LoginForm() {
           </button>
         </form>
       </div>
-      <p className="wrong-user">{wrongUser}</p>
+      <p className="wrong-user">{wrongUser && "Invalid Username or Password"}</p>
     </div>
   );
 }
