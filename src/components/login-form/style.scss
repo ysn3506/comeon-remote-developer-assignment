@@ -1,0 +1,42 @@
+.form-wrapper {
+    margin: auto;
+    width: 60vw;
+    max-width:500px;
+    height:50%;
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    padding:30px;
+
+    .login-form {
+        margin:50px auto;
+        width: 100%;
+        .field {
+            .label {
+                display: flex;
+            }
+        }
+        .field.error {
+            .label {
+                span {
+                    color: red;
+                    font-size: 12px;
+                    align-items: center;
+                    margin: auto 10px;
+                }
+            }
+
+        }
+
+
+    }
+
+    .wrong-user {
+
+        color: red;
+        font-size: 16px;
+        align-items: center;
+        margin: 10px auto;
+
+    }
+}
