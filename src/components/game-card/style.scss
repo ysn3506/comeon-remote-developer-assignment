@@ -1,0 +1,20 @@
+.item{
+    .content{
+        .play-button {
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 767px){
+    .item {
+        .content {
+            text-align: center;
+            .play-button {
+                float: unset!important;
+                margin:1.5rem auto!important;
+            }
+        }
+    }
+}

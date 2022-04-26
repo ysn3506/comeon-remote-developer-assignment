@@ -10,18 +10,21 @@ import Error from "./views/error";
 function App() {
 
   const user = useSelector((state) => state.currentUser);
-  console.log(user)
 
+  
   return (
     <div className="App">
       <Header />
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            exact path="/"
             element={user?.name ? <Navigate to="/home" /> : <Login />}
           />
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={user?.name ? <Home/>:<Navigate to="/" />}
+          />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

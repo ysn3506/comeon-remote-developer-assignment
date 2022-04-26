@@ -1,13 +1,16 @@
 .home-wrapper {
     width: 100%;
     background-color: azure;
-    padding: 20px;
+    padding: 50px;
     text-align: left;
-
-
-
-
-    .searchbar {
-        text-align: end;
+    #searchbar {
+        text-align:  right;
     }
+
+}
+
+@media only screen and (max-width: 991px) {
+    #searchbar{
+        display: inline-table;
+    }    
 }

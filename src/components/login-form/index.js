@@ -26,7 +26,6 @@ function LoginForm() {
       dispatch(setCurrentUser(player));
       userRef.current.value = "";
       passwordRef.current.value = "";
-      console.log(currentUser)
       if (currentUser.name) navigate("/home");
     } else {
       setUserNameNull(true);
