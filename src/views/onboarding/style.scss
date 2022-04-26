@@ -1,0 +1,38 @@
+.onboarding-wrapper{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(68, 69, 68);
+
+    .logo-wrapper{
+        animation: loading 1500ms;
+        width:50%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .logo{
+                height: 10vh;
+                width: 100%;
+        }
+    }
+}
+
+@keyframes loading{
+    0% {transform: scale(1);}
+    25% {transform: scale(1.05);}
+    50% {transform: scale(1.1) ;}
+    75% {transform: scale(1.05);}
+    100% {transform: scale(1);}
+    from {
+        transform: translateY(0);
+    }
+    
+    to {
+        transform: translateY(-90%);
+    }
+}
+

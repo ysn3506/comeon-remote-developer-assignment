@@ -1,12 +1,13 @@
-import { userLogin } from "../../../services/apis";
+import { userLogin, userLogout } from "../../../services/apis";
 import constants from "./constants";
 
-const setCurrenUser = (user) => (dispatch) => {
+export const setCurrenUser = (user) => (dispatch) => {
   userLogin(user)
     .then((resp) => {
+      const userInfo={... resp.data.player,username:user.username}
       dispatch({
         type: constants.SET_CURRENT_USER,
-        payload: resp.data.player,
+        payload: userInfo,
       });
       dispatch({
         type: constants.USER_LOGIN_ERROR,
@@ -25,4 +26,14 @@ const setCurrenUser = (user) => (dispatch) => {
     });
 };
 
-export default setCurrenUser;
+
+export const logUserOut = (username) => (dispatch) => {
+  userLogout(username).catch(() => {
+    dispatch({
+      type: constants.SET_CURRENT_USER,
+      payload: {}
+    })
+  })
+}
+
+export default {setCurrenUser, logUserOut}

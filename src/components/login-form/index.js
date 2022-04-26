@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import setCurrentUser from "../../storage/redux/user/actions";
+import {setCurrenUser} from "../../storage/redux/user/actions";
 import "./style.scss";
 
 function LoginForm() {
@@ -23,7 +23,7 @@ function LoginForm() {
     e.preventDefault();
     if (user && password) {
       const player = { username: user, password };
-      dispatch(setCurrentUser(player));
+      dispatch(setCurrenUser(player));
       userRef.current.value = "";
       passwordRef.current.value = "";
       if (currentUser.name) navigate("/home");
