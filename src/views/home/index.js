@@ -5,10 +5,12 @@ import UserCard from "../../components/user-card";
 import "./style.scss";
 import GameCard from "../../components/game-card";
 import GameCategories from "../../components/game-categories";
+import GameLayout from "../game";
 
 function Home() {
     const [games, setGames] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [isGameActive, setIsGameActive] = useState(false);
 
     const user = useSelector((state) => state.currentUser);
   
@@ -41,7 +43,13 @@ function Home() {
           <div className="ui divider" />
           <div className="ui very relaxed items">
             {games ? (
-              games.map((game) => <GameCard key={game.code} game={game} />)
+              games.map((game) => (
+                <GameCard
+                  key={game.code}
+                  game={game}
+                  gameActivator={setIsGameActive}
+                />
+              ))
             ) : (
               <p>Loading...</p>
             )}
@@ -57,6 +65,7 @@ function Home() {
           )}
         </div>
       </div>
+      <GameLayout active={isGameActive} closeGame={setIsGameActive} />
     </div>
   );
 }

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from "prop-types";
 import "./style.scss";
 
-function GameCard({game}){
+require("../../lib/comeon.game-1.0.min");
+
+function GameCard({game,gameActivator}){
     return (
       <>
         <div className="item">
@@ -22,6 +24,7 @@ function GameCard({game}){
               className="ui secondary right floated button play-button"
               type="button"
               onClick={() => {
+                gameActivator(true);
                 window.comeon.game.launch(game.code);
               }}
             >
@@ -38,9 +41,11 @@ function GameCard({game}){
 export default GameCard;
 
 GameCard.defaultProps = {
-    game:{}
+  game: {},
+  gameActivator:undefined
 }
 
 GameCard.propTypes = {
-    game:PropTypes.instanceOf(Object)
+  game: PropTypes.instanceOf(Object),
+  gameActivator:PropTypes.func
 }
