@@ -4,14 +4,15 @@
     background-color: azure;
     padding: 50px;
     text-align: left;
+
     #searchbar {
-        text-align:  right;
+        text-align: right;
     }
 
 }
 
-@media only screen and (max-width: 991px) {
-    #searchbar{
-        display: inline-table;
-    }    
+@media only screen and(max-width: 991px) {
+    #searchbar {
+        margin-left:1vw;
+    }
 }

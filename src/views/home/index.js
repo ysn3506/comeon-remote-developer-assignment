@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { getGames, getCategories } from "../../services/apis";
 import UserCard from "../../components/user-card";
 import "./style.scss";
 import GameCard from "../../components/game-card";
 import GameCategories from "../../components/game-categories";
-import GameLayout from "../game";
-import sortArray  from "../../utilities";
+import sortArray from "../../utilities";
+
+const GameLayout=React.lazy(()=>import('../game'))
 
 function Home() {
   const [games, setGames] = useState([]);
@@ -72,13 +73,19 @@ function Home() {
           <h3 className="header">Categories</h3>
           <div className="ui divider" />
           {categories ? (
-            <GameCategories categories={categories} activeCategory={activeCategory} selectCategory={setActiveCategory}/>
+            <GameCategories
+              categories={categories}
+              activeCategory={activeCategory}
+              selectCategory={setActiveCategory}
+            />
           ) : (
             <p>Loading...</p>
           )}
         </div>
       </div>
-      <GameLayout active={isGameActive} closeGame={setIsGameActive} />
+      <Suspense fallback={<p>Loading...</p>} >
+        <GameLayout active={isGameActive} closeGame={setIsGameActive} />
+      </Suspense>
     </div>
   );
 }
