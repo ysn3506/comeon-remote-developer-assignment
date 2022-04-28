@@ -1,11 +1,14 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { getGames, getCategories } from "../../services/apis";
+
 import UserCard from "../../components/user-card";
 import "./style.scss";
 import GameCard from "../../components/game-card";
 import GameCategories from "../../components/game-categories";
-import {sortArray} from "../../utilities";
+import { sortArray } from "../../utilities";
+import Spinner from "../../components/spinner";
 
 const GameLayout = React.lazy(() => import("../game"));
 
@@ -29,7 +32,7 @@ function Home() {
   }, [user]);
 
   const renderGames = () => {
-    if (!games) return <p>Loading...</p>;
+    if (games.length<=0) return <Spinner/>;
 
     const filteredGames = games.filter(
       (game) =>
@@ -39,7 +42,9 @@ function Home() {
 
     const sortedGames = sortArray(filteredGames, "name");
 
-    if (sortedGames.length === 0) return <p>There is no match</p>;
+    const selectedCategory = categories[activeCategory]?.name;
+
+    if (sortedGames.length === 0) return <p>No matched game in {activeCategory===0?'any':selectedCategory} {activeCategory===0?'categories':'category'}</p>;
 
     return sortedGames.map((game) => (
       <GameCard key={game.code} game={game} gameActivator={setIsGameActive} />
@@ -67,7 +72,15 @@ function Home() {
         <div className="twelve wide column">
           <h3 className="header">Games</h3>
           <div className="ui divider" />
-          <div className="ui very relaxed items">{renderGames()}</div>
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={activeCategory || searchField}
+              classNames="fade"
+              timeout={250}
+            >
+              <div className="ui very relaxed items">{renderGames()}</div>
+            </CSSTransition>
+          </SwitchTransition>
         </div>
         <div className="four wide column">
           <h3 className="header">Categories</h3>
@@ -79,11 +92,11 @@ function Home() {
               selectCategory={setActiveCategory}
             />
           ) : (
-            <p>Loading...</p>
+            <Spinner />
           )}
         </div>
       </div>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Spinner />}>
         <GameLayout active={isGameActive} closeGame={setIsGameActive} />
       </Suspense>
     </div>
