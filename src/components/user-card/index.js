@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./style.scss";
-// import { useNavigate } from "react-router-dom";
-import { useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logUserOut } from "../../storage/redux/user/actions";
 
 export default function UserCard({ user }) {
   const username = useSelector((state) => state.currentUser.username);
-    // const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const logOut = () => {
-      
-   dispatch(logUserOut(username))
-
+  const logOut = () => {
+    dispatch(logUserOut(username));
   };
 
   return (
@@ -34,7 +30,7 @@ export default function UserCard({ user }) {
         </div>
       </div>
       <button
-        className="ui secondary button"
+        className="ui secondary button logout"
         type="button"
         onClick={() => logOut()}
       >

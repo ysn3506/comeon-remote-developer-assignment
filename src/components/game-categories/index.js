@@ -29,5 +29,5 @@ GameCategories.defaultProps = {
 GameCategories.propTypes = {
   categories: PropTypes.arrayOf(Object).isRequired,
   selectCategory: PropTypes.func,
-  activeCategory: PropTypes.func,
+  activeCategory: PropTypes.number,
 };

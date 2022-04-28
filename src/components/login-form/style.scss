@@ -1,21 +1,23 @@
 .form-wrapper {
     margin: auto;
     width: 60vw;
-    max-width:500px;
-    height:50%;
+    max-width: 500px;
+    height: 50%;
     display: flex;
     flex-direction: column;
     background-color: azure;
-    padding:30px;
+    padding: 30px;
 
     .login-form {
-        margin:50px auto;
+        margin: 50px auto;
         width: 100%;
+
         .field {
             .label {
                 display: flex;
             }
         }
+
         .field.error {
             .label {
                 span {
@@ -48,5 +50,5 @@
         width: 100%;
 
     }
-    
+
 }

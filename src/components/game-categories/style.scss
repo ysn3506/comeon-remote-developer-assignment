@@ -10,3 +10,14 @@
         color: black!important;;
     }
 }
+
+
+@media screen and (max-width:992px) {
+    .ui.link.list {
+    
+        button {
+           text-align: left;
+        }
+    }
+    
+}

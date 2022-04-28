@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {setCurrenUser} from "../../storage/redux/user/actions";
+import { setCurrenUser } from "../../storage/redux/user/actions";
 import "./style.scss";
 
 function LoginForm() {
@@ -83,7 +83,9 @@ function LoginForm() {
           </button>
         </form>
       </div>
-      <p className="wrong-user">{wrongUser && "Invalid Username or Password"}</p>
+      <p className="wrong-user">
+        {wrongUser && "Invalid Username or Password"}
+      </p>
     </div>
   );
 }

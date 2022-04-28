@@ -5,9 +5,9 @@ import UserCard from "../../components/user-card";
 import "./style.scss";
 import GameCard from "../../components/game-card";
 import GameCategories from "../../components/game-categories";
-import sortArray from "../../utilities";
+import {sortArray} from "../../utilities";
 
-const GameLayout=React.lazy(()=>import('../game'))
+const GameLayout = React.lazy(() => import("../game"));
 
 function Home() {
   const [games, setGames] = useState([]);
@@ -83,7 +83,7 @@ function Home() {
           )}
         </div>
       </div>
-      <Suspense fallback={<p>Loading...</p>} >
+      <Suspense fallback={<p>Loading...</p>}>
         <GameLayout active={isGameActive} closeGame={setIsGameActive} />
       </Suspense>
     </div>
